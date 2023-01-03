@@ -1,0 +1,76 @@
+❯ RUST_LOG=debug cargo run client ../server/sock teste
+    Finished dev [unoptimized + debuginfo] target(s) in 0.09s
+     Running `target/debug/client client ../server/sock teste`
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 0
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 0
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 1
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 1
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 2
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 2
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 3
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 3
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message call question_id 0 interface_id 16489157238118395748 method_id 0 cap_table_array 0
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message call END
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message finish question_id 0
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 4
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 4
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:33Z INFO  capnp_rpc::rpc] ANDRE handle_message release id 0
+[2023-01-03T18:31:33Z INFO  client::client] received: CALLBACK teste
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 1
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 1
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 2
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 2
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 3
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 3
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message call question_id 0 interface_id 16489157238118395748 method_id 0 cap_table_array 0
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message call END
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message finish question_id 0
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 4
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 4
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:34Z INFO  capnp_rpc::rpc] ANDRE handle_message release id 0
+[2023-01-03T18:31:34Z INFO  client::client] received: CALLBACK teste
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 1
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 1
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 2
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 2
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 3
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 3
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message call question_id 0 interface_id 16489157238118395748 method_id 0 cap_table_array 0
+[2023-01-03T18:31:35Z INFO  capnp_rpc::rpc] ANDRE handle_message call END
+[2023-01-03T18:31:45Z INFO  client::client] error receiving response: deadline has elapsed
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 1
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 1
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 2
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 2
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message return question_id 3
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message return END question_id 3
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE handle_message call question_id 0 interface_id 16489157238118395748 method_id 0 cap_table_array 0
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE disconnect() 1
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE disconnect() 2
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE disconnect() 3
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE disconnect() 4
+[2023-01-03T18:31:45Z INFO  capnp_rpc::rpc] ANDRE disconnect() 5
+Error: Error { kind: Failed, description: "Received a new call on in-use question id 0" }

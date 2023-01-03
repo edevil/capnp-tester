@@ -28,9 +28,6 @@ class Server:
             except Exception as err:
                 logging.debug("Unknown myreader err: %s", err)
                 return False
-            if count == 7:
-                logging.debug("skipped message")
-                continue
             logging.debug("read bytes from reader: %d, %d", len(data), count)
             await self.server.write(data)
             logging.debug("wrote bytes to RPC server")
