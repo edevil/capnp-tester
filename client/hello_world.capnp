@@ -1,5 +1,14 @@
 @0x9663f4dd604afa35;
 
+interface FirstLevel {
+    getSecondLevel @0 () -> (second :SecondLevel);
+    getFirstLevel @1 () -> (first :FirstLevel);
+}
+
+interface SecondLevel {
+    getFinal @0 () -> (helloWorld :HelloWorld);
+}
+
 interface HelloWorld {
     struct HelloRequest {
 

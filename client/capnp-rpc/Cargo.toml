@@ -1,0 +1,29 @@
+[package]
+
+name = "capnp-rpc"
+version = "0.15.0"
+authors = [ "David Renshaw <dwrenshaw@sandstorm.io>" ]
+license = "MIT"
+description = "implementation of the Cap'n Proto remote procedure call protocol"
+repository = "https://github.com/capnproto/capnproto-rust"
+documentation = "https://docs.rs/capnp-rpc/"
+categories = ["network-programming"]
+autoexamples = false
+edition = "2021"
+
+readme = "README.md"
+
+[lib]
+
+name = "capnp_rpc"
+path = "src/lib.rs"
+
+[dependencies.futures]
+version = "0.3.0"
+default-features = false
+features = ["std"]
+
+[dependencies]
+capnp-futures = { version = "0.15.0" }
+capnp = {version = "0.15.0"}
+log = "0.4.17"

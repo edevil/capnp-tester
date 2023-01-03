@@ -12,34 +12,46 @@ hello_world_capnp = capnp.load('../client/hello_world.capnp')
 
 class Server:
     async def myreader(self):
-        while self.retry:
+        count = 0
+        while self.retry and not self.reader.at_eof():
             try:
+                data = await self.reader.read(4096)
                 # Must be a wait_for so we don't block on read()
-                data = await asyncio.wait_for(
-                    self.reader.read(4096),
-                    timeout=0.1
-                )
+                #data = await asyncio.wait_for(
+                #    self.reader.read(4096),
+                #    timeout=0.01
+                #)
+                count += 1
             except asyncio.TimeoutError:
                 logging.debug("myreader timeout.")
                 continue
             except Exception as err:
                 logging.debug("Unknown myreader err: %s", err)
                 return False
-            logging.debug("read bytes from reader: %d", len(data))
+            if count == 7:
+                logging.debug("skipped message")
+                continue
+            logging.debug("read bytes from reader: %d, %d", len(data), count)
             await self.server.write(data)
             logging.debug("wrote bytes to RPC server")
         logging.debug("myreader done.")
         return True
 
     async def mywriter(self):
+        count = 0
         while self.retry:
             try:
+                data = await self.server.read(4096)
                 # Must be a wait_for so we don't block on read()
-                data = await asyncio.wait_for(
-                    self.server.read(4096),
-                    timeout=0.1
-                )
-                logging.debug("read bytes from RPC server: %d", len(data))
+                #data = await asyncio.wait_for(
+                #    self.server.read(4096),
+                #    timeout=0.01
+                #)
+                count += 1
+                if count == 6:
+                    logging.debug("skipped message")
+                    continue
+                logging.debug("read bytes from RPC server: %d %d", len(data), count)
                 self.writer.write(data.tobytes())
                 logging.debug("wrote bytes to writer")
             except asyncio.TimeoutError:
@@ -53,7 +65,7 @@ class Server:
 
     async def myserver(self, reader, writer):
         # Start TwoPartyServer using TwoWayPipe (only requires bootstrap)
-        self.server = capnp.TwoPartyServer(bootstrap=HelloImpl())
+        self.server = capnp.TwoPartyServer(bootstrap=FirstLevel())
         self.reader = reader
         self.writer = writer
         self.retry = True
@@ -96,6 +108,21 @@ class HelloImpl(hello_world_capnp.HelloWorld.Server):
 
         name = request.name
         return request.callbackCap.doCallback(name).then(set_result)
+            #.then(lambda _x: request.callbackCap.doCallback(name))\
+            #.then(lambda _x: request.callbackCap.doCallback(name))\
+            #.then(lambda _x: request.callbackCap.doCallback(name))\
+            #.then(set_result)
+
+class FirstLevel(hello_world_capnp.FirstLevel.Server):
+    def getFirstLevel(self, _context, **kwargs):
+        return FirstLevel()
+
+    def getSecondLevel(self, _context, **kwargs):
+        return SecondLevel()
+
+class SecondLevel(hello_world_capnp.SecondLevel.Server):
+    def getFinal(self, _context, **kwargs):
+        return HelloImpl()
 
 if __name__ == '__main__':
     bind_path = 'sock'

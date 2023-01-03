@@ -19,8 +19,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-use crate::hello_world_capnp::hello_world;
+use crate::hello_world_capnp::{first_level, hello_world};
 use capnp_rpc::{pry, rpc_twoparty_capnp, twoparty, RpcSystem};
+use log::info;
 
 use futures::AsyncReadExt;
 use tokio::{
@@ -47,6 +48,8 @@ impl hello_world::hello_request::callback::Server for CallBacker {
 }
 
 pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    env_logger::init();
+
     let args: Vec<String> = ::std::env::args().collect();
     if args.len() != 4 {
         println!("usage: {} client SOCKET_PATH MESSAGE", args[0]);
@@ -69,20 +72,49 @@ pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 Default::default(),
             ));
             let mut rpc_system = RpcSystem::new(rpc_network, None);
-            let hello_world: hello_world::Client =
+            let first_level: first_level::Client =
                 rpc_system.bootstrap(rpc_twoparty_capnp::Side::Server);
 
             tokio::task::spawn_local(rpc_system);
 
             loop {
+                let first_request = first_level
+                    .get_first_level_request()
+                    .send()
+                    .pipeline
+                    .get_first();
+
+                let second_request = first_request
+                    .get_second_level_request()
+                    .send()
+                    .pipeline
+                    .get_second();
+
+                let hello_world = second_request
+                    .get_final_request()
+                    .send()
+                    .pipeline
+                    .get_hello_world();
+
                 let mut request = hello_world.say_hello_request();
                 let mut params = request.get().init_request();
                 params.set_name(&msg);
                 params.set_callback_cap(capnp_rpc::new_client(CallBacker {}));
 
-                let reply = request.send().promise.await.unwrap();
+                let reply = match tokio::time::timeout(
+                    Duration::from_secs(10 as u64),
+                    request.send().promise,
+                )
+                .await
+                {
+                    Ok(response) => response?,
+                    Err(err) => {
+                        info!("error receiving response: {}", err);
+                        continue;
+                    }
+                };
 
-                println!(
+                info!(
                     "received: {}",
                     reply
                         .get()
