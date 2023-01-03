@@ -1,0 +1,22 @@
+[package]
+
+name = "client"
+version = "0.0.0"
+authors = [ "Andre Cruz <andre@cabine.org>"  ]
+edition = "2021"
+
+build = "build.rs"
+
+[[bin]]
+name = "client"
+path = "main.rs"
+
+[build-dependencies]
+capnpc = "0.15"
+
+[dependencies]
+capnp = "0.15"
+futures = "0.3.0"
+tokio = { version = "1.0.0", features = ["net", "rt", "macros", "time"]}
+tokio-util = { version = "0.6.0", features = ["compat"] }
+capnp-rpc = "0.15.0"
